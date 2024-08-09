@@ -2,27 +2,17 @@ import java.util.Scanner;
 
 public class Main {
     public static boolean dateCheck(int m, int d){
-        int x = 0;
-        boolean isCheck = true;
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-        if(m>=1 && m<=12){
-            isCheck = true;
-        }else{
-            isCheck = false;
-        }
-
-        if(d >= 1 && d <= days[m-1]){
-            isCheck = true;
-        }else{
-            isCheck = false;
-        }
-
-        if(isCheck){
-            return true;
-        }else{
+        if(m < 1 || m > 12) {
             return false;
         }
+
+        if(d < 1 || d > days[m-1]) {
+            return false;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
