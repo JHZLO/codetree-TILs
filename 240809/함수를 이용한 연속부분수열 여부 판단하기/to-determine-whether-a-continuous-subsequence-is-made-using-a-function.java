@@ -2,12 +2,16 @@ import java.util.Scanner;
 
 public class Main {
     public static boolean isSubSequence(int[] a, int[] b){
-
+        
         for(int i = 0; i < a.length - b.length; i++){
+            int isSub = 1;
             for (int j = i; j < i + b.length; j++){
                 if(a[j] != b[j-i]){
+                    isSub = 0;
                     continue;
                 }
+            }
+            if(isSub == 1){
                 return true;
             }
         }
