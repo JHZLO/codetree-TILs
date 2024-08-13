@@ -13,6 +13,9 @@ public class Main {
         if(a.value < b.value){
             a.value += 10;
             b.value *= 2;
+        }else{
+            a.value *= 2;
+            b.value += 10;
         }
     }
     public static void main(String[] args) {
