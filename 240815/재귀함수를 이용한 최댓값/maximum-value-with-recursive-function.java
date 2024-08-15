@@ -8,7 +8,7 @@ public class Main {
     static int max = 0;
 
     public static int findMax(int x){
-        if(x == n-1){
+        if(x > n-1){
             return max;
         }
 
