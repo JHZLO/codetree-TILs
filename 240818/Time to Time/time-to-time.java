@@ -12,7 +12,7 @@ public class Main {
         int time = 0;
 
         while(true){
-            if(hour1 == 4 && minute1 == 1){
+            if(hour1 == hour2 && minute1 == minute2){
                 break;
             }
 
