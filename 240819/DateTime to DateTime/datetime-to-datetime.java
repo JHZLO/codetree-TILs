@@ -4,32 +4,20 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        int c = sc.nextInt();
+        int a = sc.nextInt();  
+        int b = sc.nextInt();  
+        int c = sc.nextInt();  
 
-        int time = 0;
-        int day = 11;
-        int hour = 11;
-        int minute = 11;
+        int startDay = 11;
+        int startHour = 11;
+        int startMinute = 11;
 
-        while(true){ 
-            if(day==a && hour==b && minute==c){
-                break;
-            }
+        // 시작 시간과 목표 시간을 모두 분 단위로 변환
+        int startTime = (startDay * 24 * 60) + (startHour * 60) + startMinute;
+        int targetTime = (a * 24 * 60) + (b * 60) + c;
 
-            minute ++;
-            time ++;
-            if(minute == 60){
-                minute = 0;
-                hour ++;
-                if(hour == 24){
-                    day++;
-                    hour = 0;
-                }
-            }
-        }
+        int timeDifference = targetTime - startTime;
 
-        System.out.print(time);
+        System.out.print(timeDifference);
     }
 }
