@@ -1,43 +1,51 @@
 import java.util.Scanner;
 
 public class Main {
+    public static int sumOfDays(int[] days, int m, int d) {
+        int sum = 0;
+        for (int i = 0; i < m - 1; i++) {
+            sum += days[i];
+        }
+        sum += d;
+        return sum;
+    }
+
+    public static int numOfDay(String s) {
+        // 간단한 비교를 위해 요일을 숫자로 나타내줍니다.
+        if(s.equals("Mon")) return 0;
+        else if(s.equals("Tue")) return 1;
+        else if(s.equals("Wed")) return 2;
+        else if(s.equals("Thu")) return 3;
+        else if(s.equals("Fri")) return 4;
+        else if(s.equals("Sat")) return 5;
+        return 6;
+    }
+    public static int ans;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        int[] days = new int[]{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // 윤년 고려
+        String[] weeks = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+
         int m1 = sc.nextInt();
         int d1 = sc.nextInt();
         int m2 = sc.nextInt();
         int d2 = sc.nextInt();
-        String day = sc.next();
+        String targetWeek = sc.next();
 
-        String[] day_of_week = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        int[] weekCheck = {0, 0, 0, 0, 0, 0, 0}; // 0 ~ 6 : 월 ~ 일
-        int[] days_of_month = new int[]{0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int startDay = sumOfDays(days, m1, d1);
+        int endDay = sumOfDays(days, m2, d2);
 
-        int dayCheck = 0;
-
-        while (true){
-            if (m1 == m2 && d1 == d2){
-                weekCheck[dayCheck]++;
-                break;
-            }
-
-            d1++;
-            weekCheck[dayCheck++]++;
-
-            if (dayCheck > 6){
-                dayCheck = 0;
-            }
-
-            if (d1 > days_of_month[m1]){
-                m1++;
-                d1 = 1;
-            }
+        // 시작 요일의 인덱스 계산
+        int startWeekIndex = 0;  // 월요일 인덱스는 0
+        
+        for(int date = startDay; date <= endDay; date++) {
+            // 오늘의 요일이 A요일과 같다면 정답에 추가합니다.
+            if(startWeekIndex == numOfDay(targetWeek)) ans++;
+            startWeekIndex = (startWeekIndex + 1) % 7;
         }
 
-        for(int i = 0; i < 7; i++){
-            if (day_of_week[i].equals(day)){
-                System.out.println(weekCheck[i]);
-            }
-        }
+        System.out.println(ans);
     }
 }
