@@ -43,11 +43,14 @@ public class Main {
         int offset = (targetIndex - startWeekIndex + 7) % 7;
 
         int day_offset = (d1 + offset) % 7;
+        if(day_offset == 0){
+            day_offset = 7;
+        }
         int count = 1;
 
-        // System.out.println("totalDays:"+totalDays);
+        //System.out.println("totalDays:"+totalDays);
         while(true){
-            // System.out.println("day_offset:"+day_offset);
+            //System.out.println("day_offset:"+day_offset);
             day_offset += 7;
             if(day_offset+d1%7 > totalDays){
                 break;
