@@ -16,34 +16,43 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int[] days = new int[]{31,29,31,30,31,30,31,31,30,31,30,31};
-        String[] weeks = new String[]{"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        String[] weeks = new String[]{"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
 
         int m1 = sc.nextInt();
         int d1 = sc.nextInt();
         int m2 = sc.nextInt();
         int d2 = sc.nextInt();
 
-        int diff = sumOfDays(days, m2, d2) - sumOfDays(days, m1, d1);
+        int startDay = sumOfDays(days, m1, d1);
+        int endDay = sumOfDays(days, m2, d2);
 
         String w = sc.next();
-        int index = -1;
 
-        for(int i=0; i<7; i++){
-            if(w.equals(weeks[i])){
-                index = i;
+        int startWeekIndex = 0;  // 월요일 인덱스
+        int targetIndex = -1;
+
+        for (int i = 0; i < 7; i++) {
+            if (w.equals(weeks[i])) {
+                targetIndex = i;
                 break;
-            }   
+            }
         }
 
-        int diff_index; // 요일 인덱스 차이
+        // 전체 차이에서 A 요일이 등장하는 횟수 계산
+        int totalDays = endDay - startDay + 1;
+        int offset = (targetIndex - startWeekIndex + 7) % 7;
 
-        if(index==0){
-            diff_index = 6;
-        }else{
-            diff_index = index - 1;
+        int day_offset = d1 + offset;
+        int count = 1;
+
+        while(true){
+            day_offset += 7;
+            if(day_offset > totalDays){
+                break;
+            }
+            count += 1;
         }
 
-        System.out.print((diff - diff_index)/7 + 1);
-
+        System.out.println(count);
     }
 }
