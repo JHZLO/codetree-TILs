@@ -39,7 +39,7 @@ public class Main {
         }
 
         // 전체 차이에서 A 요일이 등장하는 횟수 계산
-        int totalDays = endDay - startDay + 1;
+        int totalDays = endDay - startDay;
         int offset = (targetIndex - startWeekIndex + 7) % 7;
 
         int day_offset = d1 + offset;
