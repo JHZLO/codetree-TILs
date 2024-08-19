@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
-    public static int sumOfDays(int[] days, int m, int d){
+    public static int sumOfDays(int[] days, int m, int d) {
         int sum = 0;
 
-        for(int i=0; i<m-1; i++){
+        for (int i = 0; i < m - 1; i++) {
             sum += days[i];
         }
 
@@ -12,11 +12,12 @@ public class Main {
 
         return sum;
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int[] days = new int[]{31,29,31,30,31,30,31,31,30,31,30,31};
-        String[] weeks = new String[]{"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+        int[] days = new int[]{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        String[] weeks = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
         int m1 = sc.nextInt();
         int d1 = sc.nextInt();
@@ -39,23 +40,14 @@ public class Main {
         }
 
         // 전체 차이에서 A 요일이 등장하는 횟수 계산
-        int totalDays = endDay - startDay;
-        int offset = (targetIndex - startWeekIndex + 7) % 7;
+        int totalDays = endDay - startDay + 1;
+        int firstDayIndex = (startDay + startWeekIndex) % 7;
 
-        int day_offset = (d1 + offset) % 7;
-        if(day_offset == 0){
-            day_offset = 7;
-        }
-        int count = 1;
-
-        //System.out.println("totalDays:"+totalDays);
-        while(true){
-            //System.out.println("day_offset:"+day_offset);
-            day_offset += 7;
-            if(day_offset+d1%7 > totalDays){
-                break;
+        int count = 0;
+        for (int i = 0; i < totalDays; i++) {
+            if ((firstDayIndex + i) % 7 == targetIndex) {
+                count++;
             }
-            count += 1;
         }
 
         System.out.println(count);
