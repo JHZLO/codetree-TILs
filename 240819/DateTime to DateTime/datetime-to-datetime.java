@@ -18,6 +18,10 @@ public class Main {
 
         int timeDifference = targetTime - startTime;
 
-        System.out.print(timeDifference);
+        if (timeDifference < 0) {
+            System.out.println(-1);
+        } else {
+            System.out.println(timeDifference);
+        }
     }
 }
